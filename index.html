@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CS 6774</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	  <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.css" type="text/css" />
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body {
+        font-family: 'Droid Serif';
+        font-size: medium;
+      }
+      .remark-container{
+        background-image:url('tools.jpg');
+        background-repeat:no-repeat;
+        background-size: cover;
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      .small * {
+        font-size: small !important;
+      }
+      code {
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      .footnote {
+        position: absolute;
+        font-size: large;
+        bottom: 3em;
+        right: 3em;
+      }
+      /* styling only necessary for displaying source */
+      #source {
+        position: absolute;
+        display: none;
+        font-family: monospace;
+        font-size: medium;
+        background: #333333;
+        color: white;
+        padding: 10px;
+        text-align: left;
+        width: 65%;
+        height: 70%;
+        z-index: 1000;
+      }
+      #overlay {
+        position: absolute;
+        display: none;
+        background: black;
+        width: 100%;
+        height: 100%;
+        opacity: 0.2;
+        z-index: 999;
+      }
+      a{
+        color: orange;
+      }
+      h1#title {
+        margin-top: 100px;
+        margin-bottom: 30px;
+      }
+    </style>
+	<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+	<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.js"></script>
+    
+  </head>
+  <body onload="var slideshow = remark.create();">
+    <textarea id="source" readonly>
+
+class: center, middle, inverse
+
+# California Forest Fires
+## 2000 - 2017
+
+
+.footnote[ by [Umar Shaik](https://github.com/ufshaikc/cs6774)
+]
+---
+
+
+<div class="container" style="width: 100%; height: 100vh; margin: 0px">
+  <div class="row">
+    <div class="col">
+      <h1 id="title" >Agenda</h1>
+      <h3>
+              1. Input Dataset          <br/>
+              2. Gantt Chart   <br/>
+              3. Timeline Baloon Colored      <br/>
+              4. Timeline Baloon Animated            <br/>
+              5. Conclusion            <br/>
+          </h3>
+      </div>
+      <div 
+        class="col" 
+        style="height:67vh; width: 200px; background-size: cover; background-image: url(https://www.northeastern.edu/graduate/blog/wp-content/uploads/2019/01/chart-data-desk-590022.jpg);"
+          />
+      </div>
+    </div>
+  </div>
+
+
+
+---
+<h1 id="title" >1. Input Dataset</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Intensity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Alpha</td>
+      <td>01-10-2017</td>
+      <td>02-10-2017</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <td>Beta</td>
+      <td>01-11-2017</td>
+      <td>07-11-2017</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <td>Charlie</td>
+      <td>01-12-2017</td>
+      <td>30-12-2017</td>
+      <td>1</td>
+    </tr>
+
+  </tbody>
+</table>
+
+* Intensity is the acres of land burned, which is normalized on a scale of 0 to 1.
+* Name - Categorical
+* Start Date / End Date - Quantitative -> Sequential
+* Intensity - Ordinal
+
+---
+
+# 2. Gantt Chart [*](./calfire-box.html) [#](https://www.w3schools.com/colors/colors_picker.asp)
+What is the dependency of intensity on the duration of the event?
+
+Why: {`Locate`, `Attributes -> Many -> Dependency` }
+
+How: {` Arrange -> Separate`,  `Map - Ordered -> Color -> Saturation, Ordered -> Size -> length`}
+
+Channels: `Hue` instead of `Saturation` for Intensity (Ordinal)
+
+---
+
+<!--<object width="400" height="200" type="text/html" data="https://www.w3schools.com/colors/colors_picker.asp" border="1" >-->
+<!--</object>-->
+<!-- -&#45;&#45;-->
+
+# 3. Timeline Baloon Colored [*](./calfire-box.html)[#](https://www.w3schools.com/colors/colors_picker.asp)
+
+What is the intensity dependency on the duration of the event?
+
+Why: {`Locate`, `Attributes -> Many -> Dependency` }
+
+How: {` Arrange -> Separate`, `Map - Ordered -> Color -> Saturation, Ordered -> Size -> length / Area`}
+
+Channels: `Saturation` instead of `Hue` for Duration Name (Categorical)
+
+---
+
+<!--<object width="800" height="420" type="text/html" data="calfire-box.html" border="1" >-->
+<!--</object>-->
+<!-- -&#45;&#45;-->
+
+# 4. Timeline Baloon Animated [*](./calfire-box.html)[#](https://www.w3schools.com/colors/colors_picker.asp)
+
+At what point did the intensity actually increase?
+
+Why: {`Locate`, `Attributes -> One -> Extremes` }
+
+How: {` Arrange -> Separate`, `Map - Ordered -> Color -> Saturation, Ordered -> Size -> length / Area`}
+
+Channel: `Hue` for Intensity (Animation)
+
+
+<!--<object width="800" height="420" type="text/html" data="calfire-box.html" border="1" >-->
+<!--</object>-->
+
+---
+
+# 5. Take Away Points
+
+* Using `Hue` for ordinal and `Saturation` for categorical proved useful in our case.
+* Eyes beat memory, easy to compare visuals by moving side-by-side.
+* Animation's are good, if considered in small multiples instead of large scale.
+* Timeline balloons are only good for smaller dataset.
+
+
+    </textarea>
+  
+    
+   </body>
+</html>

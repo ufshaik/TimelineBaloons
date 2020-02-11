@@ -1,0 +1,92 @@
+@viewport {
+    width: 500px;
+}
+
+h3 {
+    font-size: 16px;
+    text-align: center;
+}
+
+.container{
+    left: 300px;
+    margin: 0 auto;
+    position: relative;
+    right: 300px;
+}
+
+.timeline1 {
+    left: 300px;
+    margin: 0 auto;
+    position: relative;
+    right: 300px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 15px;
+}
+
+.timeline-label {
+    font-family: sans-serif;
+    font-size: 12px;
+}
+
+.coloredDiv {
+    height:20px; width:20px; float:left;
+}
+.dashed {
+    stroke-dasharray: 3,3;
+}
+
+.tooltip {
+    background: #eee;
+    box-shadow: 0 0 5px #999999;
+    color: #333;
+    display: none;
+    font-size: 12px;
+    left: 200px;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    top: 95px;
+    width: 80px;
+    z-index: 10;
+}
+
+.tooltip2 {
+    background: #eee;
+    box-shadow: 0 0 5px #999999;
+    color: #333;
+    display: none;
+    font-size: 12px;
+    left: 200px;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    top: 250px;
+    width: 80px;
+    z-index: 10;
+}
+
+/*.intenseSeries_cB {*/
+/*    animation: flip 5.0s infinite;*/
+/*}*/
+
+/*@keyframes flip {*/
+/*    0% {*/
+/*        transform: rotateY(0deg);*/
+/*        transform-origin: center;*/
+/*    }*/
+
+/*    100% {*/
+/*        transform: rotateY(1turn);*/
+/*        transform-origin: center;*/
+/*    }*/
+/*}*/
