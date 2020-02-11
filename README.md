@@ -1,4 +1,4 @@
-### CS 6774 Project
+### Important Notes:
 
 * Project.ipynb - Contains the description of the project
 * project.py - Python file used for data cleaning operations
@@ -8,3 +8,5 @@
 Presentation can be viewed at https://ufshaik.github.io/TimelineBaloons/
 
 All project description can be found in the Project.ipynb
+
+The html files can be viewed locally by running it on a server using python or an IDE.
